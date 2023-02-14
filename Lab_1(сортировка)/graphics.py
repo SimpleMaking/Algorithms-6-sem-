@@ -32,7 +32,7 @@ def func_matplot_print():
     plt.grid(True)
     plt.title("Лучший, худший и средний случаи")
     plt.xlabel("N")
-    plt.ylabel("Время в милисекундах")
+    plt.ylabel("Время в миллисекундах")
     plt.plot(points_x, min_graph, '-', label="Лучший случай")
     plt.plot(points_x, max_graph, '--', label="Худший случай")
     plt.plot(points_x, avg_graph, '-.', label="Среднее время") 

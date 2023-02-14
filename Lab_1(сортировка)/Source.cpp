@@ -28,6 +28,7 @@ int main(void)
 	
 	out.open("output.txt");
 	size_t counter = 0;
+	// get times for all tests
 	for (auto value : CONST_SIZE_ARR)
 	{
 		double* data = new double[value];
@@ -54,12 +55,14 @@ int main(void)
 		
 	}
 	
+	//output data into the file output.txt
 	out << "N min max avg" << endl;
 	for (size_t i = 0; i < 8; i++)
 	{
 		
 		out << std::setprecision(3) << CONST_SIZE_ARR[i] << " " << min[i] << " " << max[i] << " " << avg[i] << endl;
 	}
-
+	out.close();
+	system("python graphics.py");
 	return 0;
 }
