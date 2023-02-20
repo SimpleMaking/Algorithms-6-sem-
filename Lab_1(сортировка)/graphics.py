@@ -27,8 +27,11 @@ def func():
 def func_matplot_print():
   
     points_x, min_graph, max_graph, avg_graph = func()
-    
-
+    min_time = min(max_graph)
+    c = min_time / (points_x[0] ** 2) + 0.1
+    addit_graph = list()
+    for value in points_x:
+        addit_graph.append(c * (value ** 2))
     plt.grid(True)
     plt.title("Лучший, худший и средний случаи")
     plt.xlabel("N")
@@ -36,6 +39,7 @@ def func_matplot_print():
     plt.plot(points_x, min_graph, '-', label="Лучший случай")
     plt.plot(points_x, max_graph, '--', label="Худший случай")
     plt.plot(points_x, avg_graph, '-.', label="Среднее время") 
+    plt.plot(points_x, addit_graph, '-*', label="O(c * g(N))") 
     plt.legend()
     plt.show()    
 

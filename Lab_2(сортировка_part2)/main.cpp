@@ -9,7 +9,6 @@ using namespace std;
 double* data;
 constexpr int CONST_SIZE_ARR[8] = { 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000 };
 constexpr int A = -1, B = 1;
-
 void generation(size_t count_of_elems, size_t flag)
 {
 	switch (flag)

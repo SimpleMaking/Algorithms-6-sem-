@@ -22,8 +22,8 @@ int main(void)
 	double min[8], max[8], avg[8] = { 0 };
 	for (size_t i = 0; i < 8; i++)
 	{
-		min[i] = 20;
-		max[i] = -20;
+		min[i] = 999999;
+		max[i] = -999999;
 	}
 
 	out.open("output.txt");
@@ -34,8 +34,10 @@ int main(void)
 		double* data = new double[value];
 		for (size_t i = 0; i < 20; i++)
 		{
-			data[i] = A + (B - A) * rand() / (float)RAND_MAX;
+			for (size_t k = 0; k < value; k++)
+				data[k] = A + (B - A) * rand() / (float)RAND_MAX;
 
+		
 			chrono::high_resolution_clock::time_point start = chrono::high_resolution_clock::now();
 			double* sorted_data = paste_sort(data, value);
 			chrono::high_resolution_clock::time_point end = chrono::high_resolution_clock::now();
@@ -52,7 +54,7 @@ int main(void)
 		}
 		avg[counter] /= 20;
 		counter += 1;
-
+		delete[] data;
 	}
 
 	//output data into the file output.txt
