@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import math
 
 def func(filename):
 
@@ -27,7 +28,10 @@ def func(filename):
 def func_matplot_print(graph_name, filename):
   
     points_x, min_graph, max_graph, avg_graph = func(filename)
-    
+    c = 0.1
+    addit_graph = list()
+    for value in points_x:
+        addit_graph.append(c * value * math.log(value))
 
     plt.grid(True)
     plt.title(graph_name)
@@ -36,6 +40,7 @@ def func_matplot_print(graph_name, filename):
     plt.plot(points_x, min_graph, '-', label="Лучший случай")
     plt.plot(points_x, max_graph, '--', label="Худший случай")
     plt.plot(points_x, avg_graph, '-.', label="Среднее время") 
+    plt.plot(points_x, addit_graph, '-*', label="c * n * log(n)") 
     plt.legend()
     plt.show()    
 

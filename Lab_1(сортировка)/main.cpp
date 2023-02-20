@@ -4,10 +4,10 @@
 #include <iomanip>
 
 using namespace std;
-constexpr int CONST_SIZE_ARR[8] = { 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000 };
+constexpr int CONST_SIZE_ARR[8] = { 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000 }; 
 constexpr int A = -1, B = 1;
 
-double* paste_sort(double* data, size_t n)
+double* paste_sort(double* data, size_t n) 
 {
 	for (int i = 1; i < n; i++)
 		for (int j = i; j > 0 && data[j - 1] > data[j]; j--) // пока j>0 и элемент j-1 > j, x-массив int
