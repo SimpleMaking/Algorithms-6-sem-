@@ -17,7 +17,7 @@ void generation(size_t count_of_elems, size_t flag)
 		{
 			for (int i = 0; i < count_of_elems; ++i)
 			{
-				::data[i] = count_of_elems - i; // отсортированный изначально
+				::data[i] = i; // отсортированный изначально
 			}
 			break;
 		}
@@ -54,8 +54,8 @@ int quick_sort(int S, int P)
 {
 	int k1 = S, k2 = P;
 	int recursion_count = 0;
-	double mid = ::data[(k1 + k2) / 2];
-	while (k1 <= k2)
+	double mid = ::data[(k1 + k2) / 2]; // выбипаем опорный элемент
+	while (k1 <= k2)  // в цикле пока не пройдемся по всему разделенному на два интервала массиву
 	{
 		while (::data[k1] < mid)
 			++k1;
@@ -68,7 +68,7 @@ int quick_sort(int S, int P)
 			--k2;
 		}
 	}
-	if (S < k2)
+	if (S < k2) 
 	{
 		recursion_count += quick_sort(S, k2);
 		recursion_count += 1;
@@ -102,8 +102,13 @@ void tests(size_t flag, string filename)
 			size_t recur_count = 0;
 			::data = new double[value];
 			generation(value, flag);
-			
-		
+			if (!i)
+			{
+				for (size_t i = 0; i < 12; ++i)
+					cout << ::data[i] << " ";
+				cout << endl;
+			}
+				
 			recur_count = quick_sort(0, value);
 			if (recur_count < min[counter])
 			{
@@ -115,6 +120,9 @@ void tests(size_t flag, string filename)
 			}
 			avg[counter] += recur_count;
 		}
+		for (size_t i = 0; i < 12; ++i)
+			cout << ::data[i] << " ";
+		cout << endl << endl;
 		avg[counter] /= 20;
 		counter += 1;
 	}
@@ -134,11 +142,11 @@ int main(void)
 {
 	srand(time(0));
 
-	tests(1, "output_1.txt"); // отсортированный изначально
-	tests(2, "output_2.txt"); // одинаковые элементы
+	//tests(1, "output_1.txt"); // отсортированный изначально
+	//tests(2, "output_2.txt"); // одинаковые элементы
 	tests(3, "output_3.txt"); // с максимальным количеством сравнений при выборе среднего элемента в качестве опорного
 	tests(4, "output_4.txt"); // рандом
-	/*system("python graphics.py");*/
+	system("python graphics.py");
 	return 0;
 }
 	
