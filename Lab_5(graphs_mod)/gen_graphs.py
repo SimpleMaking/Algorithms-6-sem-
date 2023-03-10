@@ -2,7 +2,7 @@ import random
 from copy import copy
 
 
-def genGraphs(max_verts=15, max_edges=105, max_pinned_edges_with_one_vert=5):
+def genGraphs(max_verts=100, max_edges=4950, max_pinned_edges_with_one_vert=20):
     try:
         all_verts = list()
         for i in range(max_verts):

@@ -44,7 +44,7 @@ class GraphMod:
             if cur_points[0] < cur_points[1]:   
                 verts_labels = dict()
                 visited_verts = dict()
-                for i in range(cur_points[0],  cur_points[1] + 1):
+                for i in range(self.__max_verts):
                     if i == cur_points[0]:
                         verts_labels[i] = 0
                     else:
@@ -66,24 +66,25 @@ class GraphMod:
                 # вывод кратчайшего пути 
                 
                 path = list()
-                path.append(cur_points[1])
+                path.insert(0, cur_points[1])
                 for i in range(cur_points[1], cur_points[0] - 1, -1):
                     for neighboor in self.__graph[i]:
                          # находим нужное ребро
                             for elem in self.__EdgesList:
-                                if f"{i}-{neighboor}" == elem[1]:
+                                if f"{neighboor}-{i}" == elem[1]:
                                     cur_vert = elem[0]
                             if (verts_labels[i] - cur_vert) == verts_labels[neighboor]:
-                                path.append(neighboor)
+                                path.insert(0, neighboor)
                 print(path)
             else:
                 for i in range(cur_points[1], cur_points[0] - 1, -1):
                     pass
-             
+        print("\n") 
         return dif_ways
 
-p = GraphMod(15, 105, 7)
+p = GraphMod(6, 15, 3)
 # g = p.__getAdjaMatrix()
+
 print(p.DeickAlg())
 # for v in g:
 #     print(v, end="\n")

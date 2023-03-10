@@ -7,22 +7,19 @@ import matplotlib.pyplot as plt
 
 class Graph:
     
-    __max_verts = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o"]
- 
     def __init__(self, max_verts=15, max_edges=105, max_pinned_edges_with_one_vert=5, direct_graph=False):
         self.__graph, self.__direction = gen_graphs(max_verts=max_verts, max_edges=max_edges, max_pinned_edges_with_one_vert=max_pinned_edges_with_one_vert, direct_graph=direct_graph)
-        self.__verts = self.__max_verts[:max_verts]
-        self.__graph_for_alg = dict()
-        self.__level = dict()
-        self.__queue = list()
+        self.__verts = list()
         for i in range(max_verts):
-            self.__level[self.__verts[i]] = -1
+            self.__verts.append(i) 
+        self.__graph_for_alg = dict()
+        self.__queue = list()
+        # self.__level = dict()
+        # for i in range(max_verts):
+        #     self.__level[self.__verts[i]] = -1
         counter = 0
         for verts_list in self.__graph:
-            temp = list()
-            for vert in verts_list:
-                temp.append(vert)
-            self.__graph_for_alg[self.__verts[counter]] = temp
+            self.__graph_for_alg[self.__verts[counter]] = verts_list
             counter += 1
         self.__ways = list()
     
@@ -119,17 +116,19 @@ class Graph:
 
 
 def main(): 
-    max_letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o"]   
-    verts_count = 6
+    max_letters = list()
+    for i in range(20):
+            max_letters.append(i)   
+    verts_count = 11
     edges_count = verts_count * (verts_count - 1) / 2
     verts = list(); times_d = list(); times_b = list()
     for i in range(1, 11):
           
-        if verts_count == 15:  
+        if verts_count == 20:  
             verts.append(verts_count)      
-            p = Graph(15, 105, 5, True)
+            p = Graph(20, 190, 4, True)
             start = time.time() * 1000
-            p.depthFirstSearch(random.choice(max_letters), random.choice(max_letters), [False]*15, [])
+            p.depthFirstSearch(random.choice(max_letters), random.choice(max_letters), [False]*20, [])
             end = float(time.time() * 1000) - start
             times_d.append(end)
             ways = p.get_ways()
@@ -152,7 +151,8 @@ def main():
             end_init = random.choice(max_letters[:verts_count])
             start = time.time() * 1000
             values = p.breadthFirstSearch([], start=start_vert, end=end_init, path={start_vert:0})
-            end = float(time.time() * 1000) - start
+            time.sleep(0.0001)
+            end = float(time.time() * 1000) - start - 0.0001
             times_b.append(end)
             print(f"тест {i}: поиск в ширину")
             try:
@@ -166,7 +166,7 @@ def main():
             
         else:
             verts.append(verts_count) 
-            p = Graph(verts_count, edges_count, 5, False)
+            p = Graph(verts_count, edges_count, 3, False)
             start = time.time() * 1000
             p.depthFirstSearch(random.choice(max_letters[:verts_count]), random.choice(max_letters[:verts_count]), [False]*verts_count, [])
             end = float(time.time() * 1000) - start
@@ -191,7 +191,8 @@ def main():
             end_init = random.choice(max_letters[:verts_count])
             start = time.time() * 1000
             values = p.breadthFirstSearch([], start=start_vert, end=end_init, path={start_vert:0})
-            end = float(time.time() * 1000) - start
+            time.sleep(0.0001)
+            end = float(time.time() * 1000) - start - 0.0001
             times_b.append(end)
             print(f"тест {i}: поиск в ширину")
             try:
@@ -203,7 +204,7 @@ def main():
                 print("невозможно найти путь")
             print(f"время выполнения: {end}\n")
         
-        if verts_count != 15:
+        if verts_count != 20:
             verts_count += 1
             edges_count = verts_count * (verts_count - 1) / 2
     
