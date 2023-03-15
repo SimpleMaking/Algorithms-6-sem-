@@ -46,7 +46,7 @@ class Graph:
         for i in range(len(self.__verts)):
             counter = 1
             for j in range(j_itter, len(IncidMatrix[0])):
-                if IncidMatrix[i][j] == 1:
+                if IncidMatrix[i][j] == 1 and IncidMatrix[i + counter][j_itter] == 1:
                     IncidMatrix[i + counter][j_itter] = -1
                 counter += 1
             counter = 1
